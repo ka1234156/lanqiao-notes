@@ -1,0 +1,6 @@
+# 忽略掉庞大的依赖库（相当于不上传 HAL 库源码，让云端自己下）
+node_modules/
+
+# 忽略掉编译生成的产物（相当于不上传 .hex 和 .bin 文件，让云端自己编译）
+.vitepress/dist/
+.vitepress/cache/
