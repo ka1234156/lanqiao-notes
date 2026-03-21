@@ -10,37 +10,37 @@
  * colors with different brightness, and 1 soft color.
  *
  * - `XXX-1`: The most solid color used mainly for colored text. It must
- *   satisfy the contrast ratio against when used on top of `XXX-soft`.
+ * satisfy the contrast ratio against when used on top of `XXX-soft`.
  *
  * - `XXX-2`: The color used mainly for hover state of the button.
  *
  * - `XXX-3`: The color for solid background, such as bg color of the button.
- *   It must satisfy the contrast ratio with pure white (#ffffff) text on
- *   top of it.
+ * It must satisfy the contrast ratio with pure white (#ffffff) text on
+ * top of it.
  *
  * - `XXX-soft`: The color used for subtle background such as custom container
- *   or badges. It must satisfy the contrast ratio when putting `XXX-1` colors
- *   on top of it.
+ * or badges. It must satisfy the contrast ratio when putting `XXX-1` colors
+ * on top of it.
  *
- *   The soft color must be semi transparent alpha channel. This is crucial
- *   because it allows adding multiple "soft" colors on top of each other
- *   to create a accent, such as when having inline code block inside
- *   custom containers.
+ * The soft color must be semi transparent alpha channel. This is crucial
+ * because it allows adding multiple "soft" colors on top of each other
+ * to create a accent, such as when having inline code block inside
+ * custom containers.
  *
  * - `default`: The color used purely for subtle indication without any
- *   special meanings attached to it such as bg color for menu hover state.
+ * special meanings attached to it such as bg color for menu hover state.
  *
  * - `brand`: Used for primary brand colors, such as link text, button with
- *   brand theme, etc.
+ * brand theme, etc.
  *
  * - `tip`: Used to indicate useful information. The default theme uses the
- *   brand color for this by default.
+ * brand color for this by default.
  *
  * - `warning`: Used to indicate warning to the users. Used in custom
- *   container, badges, etc.
+ * container, badges, etc.
  *
  * - `danger`: Used to show error, or dangerous message to the users. Used
- *   in custom container, badges, etc.
+ * in custom container, badges, etc.
  * -------------------------------------------------------------------------- */
 
 :root {
@@ -137,3 +137,65 @@
   --docsearch-primary-color: var(--vp-c-brand-1) !important;
 }
 
+
+/* ==========================================================================
+   导师新增的高级样式：代码放大与滑动条
+   ========================================================================== */
+
+/* 1. 放大代码块字体 */
+:root {
+  --vp-code-font-size: 15.5px; 
+  --vp-code-line-height: 1.6;
+}
+
+/* 2. 给过长的代码块添加限制高度与垂直滑动条 */
+.vp-doc div[class*="language-"] {
+  max-height: 60vh; 
+  overflow-y: auto; 
+  position: relative;
+}
+
+/* 3. 我们自己手写的“放大按钮”的样式 */
+.zoom-btn {
+  position: absolute;
+  top: 12px;
+  right: 50px; 
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  background-color: var(--vp-code-block-bg);
+  color: var(--vp-code-copy-code-hover-text);
+  border: 1px solid transparent;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s, border-color 0.2s, background-color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+}
+
+/* 鼠标悬浮在代码块上时，显示放大按钮 */
+.vp-doc div[class*="language-"]:hover .zoom-btn {
+  opacity: 1;
+}
+
+/* 放大按钮自身的悬浮高亮效果 */
+.zoom-btn:hover {
+  border-color: var(--vp-c-divider);
+  background-color: var(--vp-code-copy-code-hover-bg);
+}
+
+/* 4. 触发全屏模式时的终极样式 */
+.vp-doc div[class*="language-"].is-fullscreen {
+  position: fixed;
+  top: 5vh;
+  left: 5vw;
+  width: 90vw;
+  height: 90vh;
+  max-height: 90vh; 
+  z-index: 9999;
+  box-shadow: 0 0 50px rgba(0,0,0,0.8); 
+  border-radius: 12px;
+  margin: 0;
+}
