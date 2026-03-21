@@ -5,10 +5,10 @@ layout: home
 hero:
   name: "蓝桥杯嵌入式知识库"
   text: "我的STM32学习笔记"
-  tagline: "从点灯到裸机调度器，记录备赛点滴，向国一冲刺！"
+  tagline: "从点灯到裸机调度器，记录备赛点滴！"
   actions:
     - theme: brand
-      text: 开始阅读 🚀
+      text: 开始阅读 🚀git add .
       link: /stm32/scheduler
     - theme: alt
       text: 什么是任务调度器？
